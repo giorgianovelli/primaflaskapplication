@@ -2,13 +2,20 @@ from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
+@app.route('/')
+@app.route("/<user>")
+def index(user=None):
+     return render_template("user.html", user=user)
+
+@app.route("/shopping")
+def shopping():
+    food=["cheese", "tuna", "beef", "toothpaste"]
+    return render_template("shopping.html", food=food)
+
+
 # @app.route('/')
 # def index_page_landing():
-#     return '<h1>Welcome</h1>'
-
-@app.route('/')
-def index_page_landing():
-     return "Method used: %s" %request.method
+#      return "Method used: %s" %request.method
 
 @app.route("/provametodi", methods=['GET', 'POST'])
 def provametodi():
